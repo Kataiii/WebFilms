@@ -1,8 +1,9 @@
 import Book from './Book';
 import './App.css';
+import Preloader from './Preloader';
 
-const App = () => {
-  return (
+const App = (props) => {
+  return props.isLoading ? <Preloader/> : (
     <div className='App'>
       <h1 key='5' id='hello' className='class1'>Hello world</h1>
       <Book key={6} name='JS' year={2018} price={1000}/>
@@ -12,11 +13,5 @@ const App = () => {
   );
 };
 
-//function App() {
-//   return (
-//     <div className="App">
-//     </div>
-//   );
-// }
 
 export default App;
