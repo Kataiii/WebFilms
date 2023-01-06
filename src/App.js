@@ -4,20 +4,30 @@ import './App.css';
 import Preloader from './Preloader';
 
 class App extends React.Component {
-  state = {
-    count: 0
-  };
+  constructor(){
+    super();
 
+    this.state = {
+      count: 0
+    };
 
-  handleClick = () => {
-    this.setState({ count: this.state.count + 1 });
-    // this.setState((prevState) => ({count: prevState.count + 1}), () => {
-    //   console.log('Setstate');
-    // })
-    //this.setState((prevState) => ({count: prevState.count + 1}))
-    //this.setState((prevState) => ({count: prevState.count + 1}))
-    //console.log('click');
+    this.handleClick = this.handleClick.bind(this);
   }
+  
+
+  handleClick(){
+    this.setState({ count: this.state.count + 1 });
+  }
+
+  // handleClick = () => {
+  //   this.setState({ count: this.state.count + 1 });
+  //   // this.setState((prevState) => ({count: prevState.count + 1}), () => {
+  //   //   console.log('Setstate');
+  //   // })
+  //   //this.setState((prevState) => ({count: prevState.count + 1}))
+  //   //this.setState((prevState) => ({count: prevState.count + 1}))
+  //   //console.log('click');
+  // }
 
   render() {
     return (
