@@ -4,24 +4,33 @@ import './App.css';
 import Preloader from './Preloader';
 
 class App extends React.Component {
-  constructor(){
-    super();
-
-    this.state = {
-      count: 0
+  state = {
+      posts: [],
+      loading: true,
+      comments: []
     };
-
-    this.decrease = this.decrease.bind(this);
-    this.addendum = this.addendum.bind(this);
-  }
   
+  componentDidMount(){
+    console.log("componentDidMount");
+    fetch('http://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(data => this.setState({posts: data, loading: false}));
 
-  decrease(){
-    this.setState({ count: this.state.count - 1 });
+      this.timerId - setInterval(() => {
+        fetch('http://jsonplaceholder.typicode.com/comments')
+        .then(response => response.json())
+        .then(data => this.setState({comments: data, loading: false}));
+      }, 3000);
+    //чаще всего используется для fetch
   }
 
-  addendum(){
-    this.setState({count: this.state.count + 1});
+  componentDidUpdate(){
+    console.log('componentDidUpdate');
+  }
+
+  componentWillUnmount(){
+    console.log('componentWillUnmount');
+    clearInterval(this.timerId);
   }
 
   // handleClick = () => {
@@ -35,11 +44,10 @@ class App extends React.Component {
   // }
 
   render() {
+    //console.log('render', this.state.count);
     return (
       <div className='App'>
-        <button onClick={this.decrease}>-</button>
-        <input type="text" value={this.state.count} onChange={this.addendum}></input>
-        <button onClick={this.addendum}>+</button>
+       {this.state.loading ? <h3>Loading</h3> : <h3>{this.state.posts.length}</h3>}
       </div>
     );
   }
