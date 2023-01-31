@@ -11,12 +11,17 @@ class App extends React.Component {
       count: 0
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.decrease = this.decrease.bind(this);
+    this.addendum = this.addendum.bind(this);
   }
   
 
-  handleClick(){
-    this.setState({ count: this.state.count + 1 });
+  decrease(){
+    this.setState({ count: this.state.count - 1 });
+  }
+
+  addendum(){
+    this.setState({count: this.state.count + 1});
   }
 
   // handleClick = () => {
@@ -32,7 +37,9 @@ class App extends React.Component {
   render() {
     return (
       <div className='App'>
-        <button onClick={this.handleClick}>{this.state.count}</button>
+        <button onClick={this.decrease}>-</button>
+        <input type="text" value={this.state.count} onChange={this.addendum}></input>
+        <button onClick={this.addendum}>+</button>
       </div>
     );
   }
