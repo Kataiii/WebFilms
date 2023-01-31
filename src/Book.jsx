@@ -1,7 +1,10 @@
 import React from "react";
 
 const Book = (props) => {
-    console.log(props);
+    if(!props.name){
+        return null;
+    }
+
     return (
         <div>
             <h2 key={0}>{props.name}</h2>
@@ -10,5 +13,6 @@ const Book = (props) => {
         </div>
     );
 };
+
 
 export default Book;
